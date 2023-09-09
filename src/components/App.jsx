@@ -3,6 +3,7 @@ import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
+import css from './App.module.css';
 
 class App extends Component {
   state = {
@@ -29,22 +30,12 @@ class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     return (
-      <Section
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-        title="Please leave feedback"
-      >
+      <Section title="Please leave feedback">
         <FeedbackOptions
           options={Object.keys(this.state)}
           onLeaveFeedback={this.handleClick}
         />
-        <h2>Statistics</h2>
+        <h2 className={css.StatTitle}>Statistics</h2>
         {this.countTotalFeedback() ? (
           <Statistics
             good={good}
